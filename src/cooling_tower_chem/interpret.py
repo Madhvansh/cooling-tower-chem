@@ -4,6 +4,11 @@ Each ``interpret_*`` function maps a numeric index to a :class:`Tendency`
 (a coarse scaling/corrosion classification) and a short sentence. Thresholds
 follow the conventional bands cited in the index references; they are screening
 guides, not a substitute for site-specific engineering judgment.
+
+Band edges vary between published sources (for example, some Ryznar tables put
+the balanced/corrosive boundary at 6.8 rather than 7.0). This module uses the
+common "RSI 6-7 balanced" convention; treat values near a boundary as
+borderline rather than decisive.
 """
 
 from __future__ import annotations

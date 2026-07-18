@@ -92,6 +92,12 @@ def evaporation_loss(
     circulating flow evaporates per ~5.5 C (10 F) of cooling range, which this
     energy balance reproduces.
 
+    Note this assumes **all** rejected heat leaves as latent heat of
+    vaporization, so it returns the theoretical *maximum* evaporation. Real
+    towers also reject some sensible/convective heat, so field evaporation is
+    typically ~75-90% of this value; apply a heat-rejection factor if you need
+    the practical estimate, or pass a temperature-appropriate ``latent_heat``.
+
     Parameters
     ----------
     circulation_rate:
