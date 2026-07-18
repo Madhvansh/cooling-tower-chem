@@ -33,6 +33,18 @@ from .balance import (
     tds_from_conductivity,
     water_saved_by_increasing_cycles,
 )
+from .convert import (
+    EQUIVALENT_WEIGHTS,
+    as_caco3,
+    bicarbonate_as_caco3,
+    caco3_to_ion,
+    calcium_as_caco3,
+    celsius_to_fahrenheit,
+    fahrenheit_to_celsius,
+    grains_per_gallon_to_mg_l,
+    magnesium_as_caco3,
+    mg_l_to_grains_per_gallon,
+)
 from .indices import (
     aggressiveness_index,
     langelier_saturation_index,
@@ -84,4 +96,15 @@ __all__ = [
     # convenience
     "WaterSample",
     "CoolingTower",
+    # unit conversions
+    "EQUIVALENT_WEIGHTS",
+    "as_caco3",
+    "caco3_to_ion",
+    "calcium_as_caco3",
+    "magnesium_as_caco3",
+    "bicarbonate_as_caco3",
+    "mg_l_to_grains_per_gallon",
+    "grains_per_gallon_to_mg_l",
+    "celsius_to_fahrenheit",
+    "fahrenheit_to_celsius",
 ]

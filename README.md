@@ -119,6 +119,19 @@ print(round(makeup.lsi(), 2), "->", round(basin.lsi(), 2))  # -0.26 -> 1.07
 `interpret_aggressiveness` each return a coarse `Tendency` and a one-line
 explanation, so you can turn a number into an actionable message.
 
+### Unit conversions
+
+Water data arrives in mixed units. `as_caco3` / `caco3_to_ion` (plus named
+`calcium_as_caco3`, `magnesium_as_caco3`, `bicarbonate_as_caco3`) convert between
+mg/L-of-ion and mg/L-as-CaCO3; `grains_per_gallon_to_mg_l` and
+`celsius_to_fahrenheit` (and inverses) cover the common US/metric gaps.
+
+### Runnable examples
+
+See [`examples/`](examples/): `assess_water.py` prints a full report for one
+sample, and `optimize_cycles.py` sweeps cycles of concentration to show the
+water-use vs. scaling trade-off.
+
 ## Units & conventions
 
 - Calcium hardness and total alkalinity: **mg/L as CaCO₃**

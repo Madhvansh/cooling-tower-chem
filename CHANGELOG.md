@@ -6,6 +6,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+- `CoolingTower` object: evaporation/drift/blowdown/makeup balance and a
+  `concentrated()` projection of makeup chemistry at N cycles.
+- Unit conversions (`convert`): mg/L-of-ion ↔ mg/L-as-CaCO3, grains/gallon, and
+  Celsius/Fahrenheit.
+- Runnable examples under `examples/`.
+
 ## [0.1.0] - 2026-07-19
 
 ### Added
