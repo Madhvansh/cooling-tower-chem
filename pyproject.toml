@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cooling-tower-chem"
+dynamic = ["version"]
+description = "Water-stability and corrosion indices (LSI, RSI, PSI, Larson-Skold) and water-balance math for cooling towers."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Madhvansh Choksi", email = "choksimac167005@gmail.com" }]
+keywords = [
+    "cooling-tower",
+    "water-treatment",
+    "water-chemistry",
+    "langelier",
+    "ryznar",
+    "puckorius",
+    "larson-skold",
+    "scaling",
+    "corrosion",
+    "cycles-of-concentration",
+    "process-engineering",
+    "industrial",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Manufacturing",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/Madhvansh/cooling-tower-chem"
+Repository = "https://github.com/Madhvansh/cooling-tower-chem"
+Issues = "https://github.com/Madhvansh/cooling-tower-chem/issues"
+Changelog = "https://github.com/Madhvansh/cooling-tower-chem/blob/main/CHANGELOG.md"
+
+[project.scripts]
+ctchem = "cooling_tower_chem.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.4", "build>=1.0"]
+
+[tool.hatch.version]
+path = "src/cooling_tower_chem/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cooling_tower_chem"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "README.md", "LICENSE", "CHANGELOG.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
