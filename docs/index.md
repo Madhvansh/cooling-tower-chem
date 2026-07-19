@@ -35,7 +35,7 @@ dosing-control project, and hardened into a standalone package.
 ## Highlights
 
 - **Dependency-free.** Pure standard-library Python, fully type-hinted (`py.typed`).
-- **Correct and cited.** Formulas reference the original papers; ~60 tests cover
+- **Correct and cited.** Formulas reference the original papers; ~70 tests cover
   formula correctness, input validation, and monotonicity.
 - **Batteries included.** A `WaterSample` report, a `CoolingTower` water-balance
   object, unit conversions, and a `ctchem` CLI.
