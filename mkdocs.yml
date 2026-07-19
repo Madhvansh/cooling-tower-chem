@@ -60,6 +60,7 @@ plugins:
 nav:
   - Home: index.md
   - Quickstart: quickstart.md
+  - Calculator: calculator.md
   - Indices & the science: indices.md
   - CCPP: ccpp.md
   - Command line: cli.md

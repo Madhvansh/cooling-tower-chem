@@ -9,6 +9,11 @@ formulas are scattered across textbooks, vendor notes, and one-off web
 calculators. `cooling-tower-chem` puts them in one tested, documented,
 importable place.
 
+!!! tip "Try it in your browser"
+    The **[interactive water-stability calculator](calculator.md)** computes the
+    Langelier (LSI), Ryznar (RSI), Puckorius (PSI), and CCPP indices live — no install
+    required, and cross-checked against this library.
+
 ```python
 from cooling_tower_chem import WaterSample
 
@@ -43,6 +48,7 @@ dosing-control project, and hardened into a standalone package.
 
 <div class="grid cards" markdown>
 - [:material-rocket-launch: **Quickstart**](quickstart.md)
+- [:material-calculator: **Water stability calculator**](calculator.md)
 - [:material-flask: **Indices & the science**](indices.md)
 - [:material-console: **Command line**](cli.md)
 - [:material-api: **API reference**](api.md)

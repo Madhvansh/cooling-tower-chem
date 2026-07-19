@@ -19,6 +19,9 @@ evaporation / blowdown / makeup balance that sets cycles of concentration.
 Those formulas are scattered across textbooks and spreadsheets. `cooling-tower-chem`
 puts them in one tested, documented, importable place.
 
+> **Try it in your browser:** the [interactive water-stability calculator](https://madhvansh.github.io/cooling-tower-chem/calculator/)
+> computes LSI, RSI, PSI, and CCPP live — no install required, and cross-checked against this library.
+
 ```bash
 # From source (until the first PyPI release lands):
 pip install git+https://github.com/Madhvansh/cooling-tower-chem
