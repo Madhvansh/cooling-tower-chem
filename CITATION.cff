@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "cooling-tower-chem: water-stability and corrosion indices for cooling towers"
+abstract: >-
+  A small, dependency-free Python library for cooling-tower and process-water
+  chemistry: the Langelier, Ryznar, Puckorius, and Larson-Skold stability and
+  corrosion indices, plus cooling-tower water balance (evaporation, blowdown,
+  makeup, cycles of concentration) and unit conversions.
+type: software
+authors:
+  - given-names: Madhvansh
+    family-names: Choksi
+    alias: Madhvansh
+license: MIT
+repository-code: "https://github.com/Madhvansh/cooling-tower-chem"
+url: "https://madhvansh.github.io/cooling-tower-chem/"
+keywords:
+  - cooling-tower
+  - water-treatment
+  - water-chemistry
+  - langelier
+  - ryznar
+  - corrosion
+  - scaling
+version: "0.1.0"
+date-released: "2026-07-19"

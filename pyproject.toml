@@ -44,6 +44,7 @@ dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/Madhvansh/cooling-tower-chem"
+Documentation = "https://madhvansh.github.io/cooling-tower-chem/"
 Repository = "https://github.com/Madhvansh/cooling-tower-chem"
 Issues = "https://github.com/Madhvansh/cooling-tower-chem/issues"
 Changelog = "https://github.com/Madhvansh/cooling-tower-chem/blob/main/CHANGELOG.md"
