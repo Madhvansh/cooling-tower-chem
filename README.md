@@ -197,9 +197,10 @@ sources; they are guides, not a substitute for site-specific engineering judgmen
 ## Contributing
 
 Issues and pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
-Good first contributions: additional indices (e.g. CCPP, Stiff-Davis for
-high-salinity brines), unit-conversion helpers, and worked examples from the
-literature to expand the test suite.
+Good first contributions: additional indices (e.g. the Calcium Carbonate
+Precipitation Potential, [#1](https://github.com/Madhvansh/cooling-tower-chem/issues/1)),
+further unit-conversion helpers, and more worked examples from the literature to
+expand the test suite.
 
 ## License
 

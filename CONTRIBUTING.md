@@ -31,10 +31,12 @@ The package uses a `src/` layout; install it in editable mode (as above) so
 
 ## Good first issues
 
-- Add the Calcium Carbonate Precipitation Potential (CCPP).
-- Add the Stiff-Davis Stability Index for high-salinity / brine waters.
-- Add ppm-as-CaCO3 ↔ ppm-as-ion conversion helpers.
-- Contribute worked examples from the literature to strengthen the test suite.
+- Add the Calcium Carbonate Precipitation Potential (CCPP) — see
+  [#1](https://github.com/Madhvansh/cooling-tower-chem/issues/1) for a full
+  implementation-ready spec.
+- Contribute additional worked examples from the literature to strengthen the
+  test suite (see `tests/test_literature.py` for the pattern).
+- Further unit-conversion helpers (e.g. more ion equivalents, pressure units).
 
 By contributing you agree that your contributions are licensed under the MIT
 License of this project.
