@@ -137,6 +137,28 @@ Water data arrives in mixed units. `as_caco3` / `caco3_to_ion` (plus named
 mg/L-of-ion and mg/L-as-CaCO3; `grains_per_gallon_to_mg_l` and
 `celsius_to_fahrenheit` (and inverses) cover the common US/metric gaps.
 
+If your analysis is already in customary US units — temperature in °F and
+hardness/alkalinity in grains per gallon (as CaCO₃) — skip the manual
+conversions and use `WaterSample.from_us_units`:
+
+```python
+from cooling_tower_chem import WaterSample
+
+# 90 °F, 26.3 gpg calcium hardness, 14.6 gpg alkalinity (both as CaCO3).
+sample = WaterSample.from_us_units(
+    ph=8.2,
+    temperature_f=90,
+    calcium_hardness_gpg=26.3,
+    total_alkalinity_gpg=14.6,
+    conductivity_us_cm=2400,   # TDS/conductivity keep their usual units
+)
+print(round(sample.lsi(), 2))  # same result as the SI constructor
+```
+
+It converts °F and grains/gallon internally (via `fahrenheit_to_celsius` and
+`grains_per_gallon_to_mg_l`) and returns an ordinary `WaterSample`, so every
+index method behaves exactly as if you had built it in SI units.
+
 ### Runnable examples
 
 See [`examples/`](examples/): `assess_water.py` prints a full report for one

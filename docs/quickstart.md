@@ -32,6 +32,26 @@ print(sample.rsi())   # 5.44  -> heavy scale
 report = sample.report()  # JSON-serializable dict of every index + interpretation
 ```
 
+## Working in US units?
+
+If your analysis is in customary US units — temperature in °F and
+hardness/alkalinity in grains per gallon (as CaCO₃) — use
+`WaterSample.from_us_units`, which converts them internally and returns an
+ordinary `WaterSample`:
+
+```python
+from cooling_tower_chem import WaterSample
+
+sample = WaterSample.from_us_units(
+    ph=8.2,
+    temperature_f=90,          # °F
+    calcium_hardness_gpg=26.3,  # grains/gallon as CaCO3
+    total_alkalinity_gpg=14.6,  # grains/gallon as CaCO3
+    conductivity_us_cm=2400,    # TDS/conductivity keep their usual units
+)
+print(round(sample.lsi(), 2))   # identical to the SI constructor
+```
+
 ## Prefer plain functions?
 
 ```python

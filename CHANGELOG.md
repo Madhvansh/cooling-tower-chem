@@ -19,6 +19,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   brine water, with `ionic_strength_from_tds` and `interpret_stiff_davis`. Uses
   the ASTM D4582 / USBR (2013) `K(μ, T)` curve fit; validated against a worked
   example from the published equations.
+- `WaterSample.from_us_units(...)`: a classmethod that accepts temperature in
+  °F and calcium hardness / total alkalinity in grains per gallon (as CaCO3),
+  converting internally to SI before delegating to the primary constructor
+  (TDS/conductivity and ions keep their usual units).
 
 ## [0.1.0] - 2026-07-19
 

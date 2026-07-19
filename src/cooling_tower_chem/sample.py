@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from . import balance, indices, interpret
+from . import balance, convert, indices, interpret
 
 __all__ = ["WaterSample"]
 
@@ -43,6 +43,82 @@ class WaterSample:
     chloride: float | None = None
     sulfate: float | None = None
     tds_factor: float = balance.DEFAULT_TDS_FACTOR
+
+    @classmethod
+    def from_us_units(
+        cls,
+        ph: float,
+        temperature_f: float,
+        calcium_hardness_gpg: float,
+        total_alkalinity_gpg: float,
+        tds: float | None = None,
+        conductivity_us_cm: float | None = None,
+        chloride: float | None = None,
+        sulfate: float | None = None,
+        tds_factor: float = balance.DEFAULT_TDS_FACTOR,
+    ) -> WaterSample:
+        """Build a :class:`WaterSample` from customary US units.
+
+        Many US practitioners report temperature in degrees Fahrenheit and
+        calcium hardness / total alkalinity in grains per US gallon (as CaCO3).
+        This constructor accepts those units and converts them to the SI
+        conventions the indices expect, via
+        :func:`cooling_tower_chem.convert.fahrenheit_to_celsius` and
+        :func:`cooling_tower_chem.convert.grains_per_gallon_to_mg_l`
+        (1 grain/gal = 17.118 mg/L as CaCO3). The signature is otherwise
+        parallel to :class:`WaterSample`.
+
+        Parameters
+        ----------
+        ph:
+            Water pH (dimensionless), unchanged.
+        temperature_f:
+            Water temperature in degrees **Fahrenheit**.
+        calcium_hardness_gpg:
+            Calcium hardness in **grains per US gallon** as CaCO3.
+        total_alkalinity_gpg:
+            Total alkalinity in **grains per US gallon** as CaCO3.
+        tds:
+            Total dissolved solids in **mg/L** (its usual unit), or ``None`` to
+            derive it from ``conductivity_us_cm``.
+        conductivity_us_cm:
+            Conductivity in **microsiemens/cm** (its usual unit); used to derive
+            TDS when ``tds`` is not given.
+        chloride, sulfate:
+            Concentrations in **mg/L** as the ion (their usual units), for the
+            Larson-Skold index.
+        tds_factor:
+            TDS-from-conductivity factor (mg/L per uS/cm), same as
+            :class:`WaterSample`.
+
+        Returns
+        -------
+        WaterSample
+            An instance whose fields are all in SI units, so every index method
+            behaves identically to one built with the primary constructor.
+
+        Example
+        -------
+        ```python
+        # 90 F, 26.3 gpg calcium hardness, 14.6 gpg alkalinity as CaCO3.
+        s = WaterSample.from_us_units(
+            ph=8.2, temperature_f=90,
+            calcium_hardness_gpg=26.3, total_alkalinity_gpg=14.6,
+            conductivity_us_cm=2400,
+        )
+        ```
+        """
+        return cls(
+            ph=ph,
+            temperature_c=convert.fahrenheit_to_celsius(temperature_f),
+            calcium_hardness=convert.grains_per_gallon_to_mg_l(calcium_hardness_gpg),
+            total_alkalinity=convert.grains_per_gallon_to_mg_l(total_alkalinity_gpg),
+            tds=tds,
+            conductivity_us_cm=conductivity_us_cm,
+            chloride=chloride,
+            sulfate=sulfate,
+            tds_factor=tds_factor,
+        )
 
     def effective_tds(self) -> float:
         """TDS in mg/L, using the measured value or deriving it from conductivity."""
