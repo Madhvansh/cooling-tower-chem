@@ -12,6 +12,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Unit conversions (`convert`): mg/L-of-ion ↔ mg/L-as-CaCO3, grains/gallon, and
   Celsius/Fahrenheit.
 - Runnable examples under `examples/`.
+- MkDocs Material documentation site with an auto-generated API reference,
+  deployed to GitHub Pages: https://madhvansh.github.io/cooling-tower-chem/
+- `CITATION.cff` and a pull-request template.
 
 ## [0.1.0] - 2026-07-19
 
