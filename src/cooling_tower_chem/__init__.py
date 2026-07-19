@@ -7,6 +7,9 @@ used to run evaporative cooling towers and other industrial water systems:
   :func:`ryznar_stability_index` (RSI), :func:`puckorius_scaling_index` (PSI),
   :func:`larson_skold_index`, :func:`aggressiveness_index`, and the underlying
   :func:`ph_of_saturation`.
+* Quantitative scaling - :func:`calcium_carbonate_precipitation_potential`
+  (CCPP), the signed mass of CaCO3 that precipitates or dissolves to reach
+  calcite saturation.
 * Water balance - :func:`cycles_of_concentration`, :func:`evaporation_loss`,
   :func:`blowdown_loss`, :func:`makeup_water`, and TDS/conductivity conversion.
 * Interpretation - :func:`interpret_lsi` and friends map a number to a plain
@@ -21,6 +24,7 @@ TDS and ions, and degrees Celsius for temperature.
 
 from __future__ import annotations
 
+from .advanced import calcium_carbonate_precipitation_potential
 from .balance import (
     DEFAULT_TDS_FACTOR,
     blowdown_loss,
@@ -81,6 +85,8 @@ __all__ = [
     "aggressiveness_index",
     "stiff_davis_index",
     "stiff_davis_ph_of_saturation",
+    # advanced (quantitative)
+    "calcium_carbonate_precipitation_potential",
     # balance
     "DEFAULT_TDS_FACTOR",
     "tds_from_conductivity",

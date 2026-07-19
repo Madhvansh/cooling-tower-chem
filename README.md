@@ -102,6 +102,15 @@ Add `--json` to any command for machine-readable output.
 | `stiff_davis_index` | S&DSI = pH − pHs (ionic-strength corrected) | LSI for high-salinity / brine water |
 | `ph_of_saturation` | pHs | the shared building block |
 
+### Precipitation potential (CCPP)
+
+Beyond the *direction* the indices give, `calcium_carbonate_precipitation_potential`
+reports the **quantity**: the signed mass of CaCO₃ (mg/L as CaCO₃) that must
+precipitate (`+`) or dissolve (`−`) to reach calcite saturation, solved for a
+closed system with the Plummer & Busenberg (1982) equilibrium constants and a
+Davies activity model. It reproduces Wojtowicz's (2001) worked examples, and is
+also available on `WaterSample.ccpp()` and the `ctchem ccpp` CLI.
+
 ### Cooling-tower water balance
 
 `cycles_of_concentration`, `evaporation_loss` (energy balance), `drift_loss`,
@@ -197,10 +206,9 @@ sources; they are guides, not a substitute for site-specific engineering judgmen
 ## Contributing
 
 Issues and pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
-Good first contributions: additional indices (e.g. the Calcium Carbonate
-Precipitation Potential, [#1](https://github.com/Madhvansh/cooling-tower-chem/issues/1)),
-further unit-conversion helpers, and more worked examples from the literature to
-expand the test suite.
+Good first contributions: additional well-referenced indices, further
+unit-conversion helpers, and more worked examples from the literature to expand
+the test suite.
 
 ## License
 

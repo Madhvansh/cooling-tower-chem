@@ -6,6 +6,10 @@ Auto-generated from the source docstrings.
 
 ::: cooling_tower_chem.indices
 
+## CCPP (advanced)
+
+::: cooling_tower_chem.advanced
+
 ## Water balance
 
 ::: cooling_tower_chem.balance

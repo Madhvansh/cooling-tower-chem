@@ -41,6 +41,10 @@ ionic-strength-dependent constant `K` (ASTM D4582 / USBR 2013 curve fit). Use it
 for high-salinity water (TDS ≳ 10,000 mg/L); for ordinary water the LSI is the
 right screen. Ionic strength is estimated as `μ ≈ 2.5×10⁻⁵ · TDS`.
 
+These indices give a direction, not a quantity. For the actual mass of calcium
+carbonate involved, the [CCPP](ccpp.md) reports the mg/L of CaCO₃ that must
+precipitate or dissolve to reach calcite saturation.
+
 Interpretation thresholds are conventional screening bands; edges vary between
 sources (some Ryznar tables put the balanced/corrosive boundary at 6.8 rather
 than 7.0), so treat values near a boundary as borderline.

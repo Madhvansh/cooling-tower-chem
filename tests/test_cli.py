@@ -39,6 +39,27 @@ def test_psi_requires_no_ph(capsys):
     assert payload["psi"] == pytest.approx(6.776, abs=1e-3)
 
 
+def test_ccpp_text(capsys):
+    rc = main([
+        "ccpp", "--ph", "8.0", "--temp", "26.7", "--calcium", "479",
+        "--alkalinity", "100", "--tds", "5000", "--ionic-strength", "0.24",
+    ])
+    assert rc == 0
+    out = capsys.readouterr().out.strip()
+    assert out.startswith("CCPP = +7.1")
+    assert "mg/L as CaCO3" in out
+
+
+def test_ccpp_json(capsys):
+    rc = main([
+        "ccpp", "--ph", "8.0", "--temp", "26.7", "--calcium", "479",
+        "--alkalinity", "100", "--tds", "5000", "--ionic-strength", "0.24", "--json",
+    ])
+    assert rc == 0
+    payload = json.loads(capsys.readouterr().out)
+    assert payload["ccpp_mg_l_as_caco3"] == pytest.approx(7.1, abs=0.15)
+
+
 def test_invalid_value_returns_error_code(capsys):
     rc = main([
         "lsi", "--ph", "7.5", "--temp", "25", "--tds", "0",

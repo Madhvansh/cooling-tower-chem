@@ -31,9 +31,6 @@ The package uses a `src/` layout; install it in editable mode (as above) so
 
 ## Good first issues
 
-- Add the Calcium Carbonate Precipitation Potential (CCPP) — see
-  [#1](https://github.com/Madhvansh/cooling-tower-chem/issues/1) for a full
-  implementation-ready spec.
 - Contribute additional worked examples from the literature to strengthen the
   test suite (see `tests/test_literature.py` for the pattern).
 - Further unit-conversion helpers (e.g. more ion equivalents, pressure units).

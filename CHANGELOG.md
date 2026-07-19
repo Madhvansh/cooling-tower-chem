@@ -19,6 +19,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   brine water, with `ionic_strength_from_tds` and `interpret_stiff_davis`. Uses
   the ASTM D4582 / USBR (2013) `K(μ, T)` curve fit; validated against a worked
   example from the published equations.
+- **Calcium Carbonate Precipitation Potential** (`calcium_carbonate_precipitation_potential`,
+  in a new `advanced` module): the signed mass of CaCO3 (mg/L as CaCO3) that must
+  precipitate or dissolve to reach calcite saturation, solved iteratively for a
+  closed system with the Plummer & Busenberg (1982) equilibrium constants and the
+  Davies activity model. Also on `WaterSample.ccpp()` and the `ctchem ccpp`
+  subcommand; the three Wojtowicz (2001) worked examples are reproduced as
+  regression tests (#1).
 - `WaterSample.from_us_units(...)`: a classmethod that accepts temperature in
   °F and calcium hardness / total alkalinity in grains per gallon (as CaCO3),
   converting internally to SI before delegating to the primary constructor

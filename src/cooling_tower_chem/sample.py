@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from . import balance, convert, indices, interpret
+from . import advanced, balance, convert, indices, interpret
 
 __all__ = ["WaterSample"]
 
@@ -184,6 +184,25 @@ class WaterSample:
             self.calcium_hardness,
             self.total_alkalinity,
             tds=self.effective_tds(),
+        )
+
+    def ccpp(self, ionic_strength: float | None = None) -> float:
+        """Calcium Carbonate Precipitation Potential, mg/L as CaCO3 (signed).
+
+        Positive means calcite tends to precipitate (scaling); negative means it
+        tends to dissolve (aggressive). By default the ionic strength is estimated
+        from TDS; pass ``ionic_strength`` (mol/L) to supply a measured or
+        model-derived value, which the result is sensitive to (see
+        :func:`cooling_tower_chem.advanced.calcium_carbonate_precipitation_potential`).
+        Not included in :meth:`report`.
+        """
+        return advanced.calcium_carbonate_precipitation_potential(
+            self.ph,
+            self.temperature_c,
+            self.calcium_hardness,
+            self.total_alkalinity,
+            tds=None if ionic_strength is not None else self.effective_tds(),
+            ionic_strength=ionic_strength,
         )
 
     def larson_skold_index(self) -> float | None:

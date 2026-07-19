@@ -7,6 +7,8 @@ Compute a full water-chemistry report from the terminal::
 
     ctchem lsi --ph 7.5 --temp 25 --tds 400 --calcium 240 --alkalinity 180
 
+    ctchem ccpp --ph 8.0 --temp 30 --calcium 900 --alkalinity 250 --tds 2000
+
 Use ``--json`` for machine-readable output.
 """
 
@@ -82,6 +84,17 @@ def build_parser() -> argparse.ArgumentParser:
         _add_saturation_args(p, need_ph=(name != "psi"))
         p.add_argument("--json", action="store_true", help="emit JSON")
 
+    p_ccpp = sub.add_parser(
+        "ccpp", help="Calcium Carbonate Precipitation Potential (mg/L as CaCO3)"
+    )
+    _add_saturation_args(p_ccpp)
+    p_ccpp.add_argument(
+        "--ionic-strength",
+        type=float,
+        help="ionic strength, mol/L (overrides the TDS estimate; CCPP is sensitive to it)",
+    )
+    p_ccpp.add_argument("--json", action="store_true", help="emit JSON")
+
     return parser
 
 
@@ -97,6 +110,12 @@ def main(argv: Sequence[str] | None = None) -> int:
                 print(json.dumps(result, indent=2))
             else:
                 _print_report(result)
+        elif args.command == "ccpp":
+            value = sample.ccpp(ionic_strength=args.ionic_strength)
+            if args.json:
+                print(json.dumps({"ccpp_mg_l_as_caco3": round(value, 3)}))
+            else:
+                print(f"CCPP = {value:+.2f} mg/L as CaCO3")
         else:
             value = {
                 "lsi": sample.lsi,

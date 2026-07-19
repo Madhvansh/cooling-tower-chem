@@ -61,5 +61,6 @@ nav:
   - Home: index.md
   - Quickstart: quickstart.md
   - Indices & the science: indices.md
+  - CCPP: ccpp.md
   - Command line: cli.md
   - API reference: api.md

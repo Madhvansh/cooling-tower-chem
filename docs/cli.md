@@ -34,6 +34,20 @@ $ ctchem psi --temp 25 --tds 400 --calcium 240 --alkalinity 180
 PSI = +6.776
 ```
 
+## Precipitation potential (CCPP)
+
+The `ccpp` subcommand reports the mass of CaCO₃ that must precipitate (`+`) or
+dissolve (`−`) to reach calcite saturation, in mg/L as CaCO₃:
+
+```console
+$ ctchem ccpp --ph 8.0 --temp 30 --calcium 900 --alkalinity 250 --tds 2000
+CCPP = +88.28 mg/L as CaCO3
+```
+
+CCPP is sensitive to the ionic strength, and the TDS estimate is only a rough
+guide, so pass `--ionic-strength` (mol/L) to override it with a measured or
+model-derived value. See [CCPP](ccpp.md) for the method and caveats.
+
 ## JSON output
 
 Add `--json` to any command for machine-readable output:
