@@ -23,6 +23,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   °F and calcium hardness / total alkalinity in grains per gallon (as CaCO3),
   converting internally to SI before delegating to the primary constructor
   (TDS/conductivity and ions keep their usual units).
+- Literature worked-example tests: LSI and RSI cases pinned to published,
+  worked examples (Corrosion Doctors correlation via Carbotecnia; Water
+  Treatment Basics), each cited with its source and tolerance.
 
 ## [0.1.0] - 2026-07-19
 
