@@ -32,6 +32,8 @@ from __future__ import annotations
 
 import math
 
+from .balance import ionic_strength_from_tds
+
 __all__ = [
     "ph_of_saturation",
     "langelier_saturation_index",
@@ -39,12 +41,18 @@ __all__ = [
     "puckorius_scaling_index",
     "larson_skold_index",
     "aggressiveness_index",
+    "stiff_davis_index",
+    "stiff_davis_ph_of_saturation",
 ]
 
 # Equivalent weights (mg per milliequivalent) used by the Larson-Skold index.
 _EQ_WEIGHT_CHLORIDE = 35.45
 _EQ_WEIGHT_SULFATE = 48.03  # SO4(2-): 96.06 / 2
 _EQ_WEIGHT_CACO3 = 50.04    # CaCO3: 100.09 / 2 (alkalinity/hardness as CaCO3)
+
+# Molar mass / equivalent weight of CaCO3 in mg (for molar concentrations).
+_CACO3_MOLAR_MASS_MG = 100086.9  # mg per mol
+_CACO3_EQUIV_MG = 50043.45       # mg per equivalent
 
 
 def _require_positive(name: str, value: float) -> float:
@@ -205,6 +213,81 @@ def larson_skold_index(
     epm_sulfate = sulfate / _EQ_WEIGHT_SULFATE
     epm_alkalinity = total_alkalinity / _EQ_WEIGHT_CACO3
     return (epm_chloride + epm_sulfate) / epm_alkalinity
+
+
+def _stiff_davis_k(ionic_strength: float, temperature_c: float) -> float:
+    """The Stiff-Davis ``K`` constant from the ASTM D4582 / USBR curve fit.
+
+    ``K`` plays the role of the Langelier saturation constant, extended to high
+    ionic strength. Source: USBR, *Water Chemistry Analysis for Water Conveyance,
+    Storage, and Desalination Projects* (2013), Eqs. 13-14, developed from the
+    ASTM D4582 chart. Temperature is in degrees Celsius.
+    """
+    strength = _require_positive("ionic_strength", ionic_strength)
+    t = _require_temperature(temperature_c)
+    if strength < 1.2:
+        return (
+            2.022 * math.exp((math.log(strength) + 7.544) ** 2 / 102.60)
+            - 0.0002 * t * t
+            + 0.00097 * t
+            + 0.262
+        )
+    return -0.1 * strength - 0.0002 * t * t - 0.00097 * t + 3.887
+
+
+def stiff_davis_ph_of_saturation(
+    temperature_c: float,
+    calcium_hardness: float,
+    total_alkalinity: float,
+    ionic_strength: float,
+) -> float:
+    """Stiff-Davis pH of saturation: ``pHs = pCa + pAlk + K``.
+
+    ``pCa`` and ``pAlk`` are molar negative logs, derived from the CaCO3-basis
+    inputs (``[Ca] = hardness / 100086.9`` mol/L, ``[Alk] = alkalinity / 50043.45``
+    eq/L). ``K`` comes from :func:`_stiff_davis_k`.
+    """
+    calcium_hardness = _require_positive("calcium_hardness", calcium_hardness)
+    total_alkalinity = _require_positive("total_alkalinity", total_alkalinity)
+    p_ca = -math.log10(calcium_hardness / _CACO3_MOLAR_MASS_MG)
+    p_alk = -math.log10(total_alkalinity / _CACO3_EQUIV_MG)
+    return p_ca + p_alk + _stiff_davis_k(ionic_strength, temperature_c)
+
+
+def stiff_davis_index(
+    ph: float,
+    temperature_c: float,
+    calcium_hardness: float,
+    total_alkalinity: float,
+    tds: float | None = None,
+    ionic_strength: float | None = None,
+) -> float:
+    """Stiff-Davis Stability Index (S&DSI): ``pH - pHs``, for high-salinity water.
+
+    The Langelier/Ryznar indices lose accuracy at high ionic strength (brines,
+    seawater, concentrated blowdown). The Stiff-Davis index corrects for this by
+    replacing the LSI temperature/TDS terms with an ionic-strength-dependent
+    constant ``K``. Read like the LSI: ``> 0`` scale-forming, ``< 0`` corrosive.
+
+    Provide the ionic strength directly (mol/L), or ``tds`` (mg/L) to estimate it
+    via ``I = 2.5e-5 * TDS``. Hardness and alkalinity are mg/L as CaCO3.
+
+    .. note::
+        S&DSI is intended for the high-salinity regime (roughly TDS > 10,000 mg/L,
+        ionic strength >= ~0.05 mol/L). The ``K`` curve fit is unreliable at very
+        low ionic strength; use :func:`langelier_saturation_index` for
+        low-salinity water instead.
+
+    References: Stiff & Davis (1952); ASTM D4582; USBR (2013).
+    """
+    if ionic_strength is None:
+        if tds is None:
+            raise ValueError("provide either tds or ionic_strength")
+        ionic_strength = ionic_strength_from_tds(tds)
+    phs = stiff_davis_ph_of_saturation(
+        temperature_c, calcium_hardness, total_alkalinity, ionic_strength
+    )
+    return float(ph) - phs
 
 
 def aggressiveness_index(

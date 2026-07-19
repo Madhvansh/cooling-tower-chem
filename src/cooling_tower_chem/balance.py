@@ -24,6 +24,7 @@ import math
 __all__ = [
     "tds_from_conductivity",
     "conductivity_from_tds",
+    "ionic_strength_from_tds",
     "cycles_of_concentration",
     "evaporation_loss",
     "drift_loss",
@@ -66,6 +67,20 @@ def conductivity_from_tds(
     tds = _require_positive("tds", tds)
     factor = _require_positive("factor", factor)
     return tds / factor
+
+
+def ionic_strength_from_tds(tds: float, factor: float = 2.5e-5) -> float:
+    """Estimate ionic strength (mol/L) from TDS (mg/L).
+
+    Uses the standard approximation ``I = 2.5e-5 * TDS`` (Langelier, 1936;
+    reproduced in Snoeyink & Jenkins and APHA Standard Methods). If you have a
+    full ion analysis, computing ``I = 0.5 * sum(c_i * z_i^2)`` directly is more
+    accurate. Ionic strength feeds the Stiff-Davis index
+    (:func:`cooling_tower_chem.indices.stiff_davis_index`).
+    """
+    tds = _require_positive("tds", tds)
+    factor = _require_positive("factor", factor)
+    return tds * factor
 
 
 def cycles_of_concentration(circulating: float, makeup: float) -> float:

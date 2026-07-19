@@ -99,6 +99,7 @@ Add `--json` to any command for machine-readable output.
 | `puckorius_scaling_index` | PSI = 2·pHs − pH_eq | better fit for buffered recirculating water |
 | `larson_skold_index` | (Cl⁻+SO₄²⁻)/alkalinity | corrosivity toward mild steel |
 | `aggressiveness_index` | AI = pH + log₁₀(Ca·Alk) | AWWA aggressiveness screen |
+| `stiff_davis_index` | S&DSI = pH − pHs (ionic-strength corrected) | LSI for high-salinity / brine water |
 | `ph_of_saturation` | pHs | the shared building block |
 
 ### Cooling-tower water balance

@@ -12,11 +12,13 @@ import pytest
 
 from cooling_tower_chem import (
     aggressiveness_index,
+    ionic_strength_from_tds,
     langelier_saturation_index,
     larson_skold_index,
     ph_of_saturation,
     puckorius_scaling_index,
     ryznar_stability_index,
+    stiff_davis_index,
 )
 
 # Reference case A inputs
@@ -92,6 +94,49 @@ def test_larson_skold_scales_with_chloride():
     low = larson_skold_index(chloride=35.0, sulfate=50.0, total_alkalinity=150.0)
     high = larson_skold_index(chloride=140.0, sulfate=50.0, total_alkalinity=150.0)
     assert high > low
+
+
+def test_stiff_davis_reference():
+    # Worked example computed directly from the ASTM D4582 / USBR (2013)
+    # equations: Ca 480 mg/L as Ca (= 1198.7 mg/L as CaCO3), alkalinity 165 mg/L
+    # as CaCO3, pH 7.0, 25 C, TDS 12,000 mg/L -> ionic strength 0.30 ->
+    # K = 3.153, pHs = 7.556, S&DSI = -0.556.
+    ca_as_caco3 = 480.0 * (100.0869 / 40.078)  # convert Ca -> as CaCO3
+    sdsi = stiff_davis_index(
+        ph=7.0, temperature_c=25.0, calcium_hardness=ca_as_caco3,
+        total_alkalinity=165.0, tds=12000.0,
+    )
+    assert sdsi == pytest.approx(-0.556, abs=0.01)
+
+
+def test_ionic_strength_from_tds():
+    assert ionic_strength_from_tds(12000.0) == pytest.approx(0.30)
+
+
+def test_stiff_davis_accepts_explicit_ionic_strength():
+    from_tds = stiff_davis_index(
+        ph=7.5, temperature_c=25.0, calcium_hardness=1000.0,
+        total_alkalinity=200.0, tds=12000.0,
+    )
+    explicit = stiff_davis_index(
+        ph=7.5, temperature_c=25.0, calcium_hardness=1000.0,
+        total_alkalinity=200.0, ionic_strength=0.30,
+    )
+    assert from_tds == pytest.approx(explicit)
+
+
+def test_stiff_davis_more_calcium_is_more_scaling():
+    low = stiff_davis_index(ph=7.5, temperature_c=25.0, calcium_hardness=500.0,
+                            total_alkalinity=200.0, tds=12000.0)
+    high = stiff_davis_index(ph=7.5, temperature_c=25.0, calcium_hardness=2000.0,
+                             total_alkalinity=200.0, tds=12000.0)
+    assert high > low
+
+
+def test_stiff_davis_requires_tds_or_ionic_strength():
+    with pytest.raises(ValueError):
+        stiff_davis_index(ph=7.5, temperature_c=25.0, calcium_hardness=1000.0,
+                          total_alkalinity=200.0)
 
 
 @pytest.mark.parametrize("bad", [0.0, -1.0, float("nan"), float("inf")])

@@ -15,6 +15,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - MkDocs Material documentation site with an auto-generated API reference,
   deployed to GitHub Pages: https://madhvansh.github.io/cooling-tower-chem/
 - `CITATION.cff` and a pull-request template.
+- **Stiff-Davis Stability Index** (`stiff_davis_index`) for high-salinity /
+  brine water, with `ionic_strength_from_tds` and `interpret_stiff_davis`. Uses
+  the ASTM D4582 / USBR (2013) `K(μ, T)` curve fit; validated against a worked
+  example from the published equations.
 
 ## [0.1.0] - 2026-07-19
 

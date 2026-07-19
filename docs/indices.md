@@ -34,6 +34,12 @@ where \(T_K = {}^{\circ}\!C + 273.15\).
 | **Puckorius (PSI)** | `2·pHs − pH_eq`, with `pH_eq = 1.465·log₁₀(alk) + 4.54` | better fit for buffered recirculating water; uses an equilibrium pH, not the measured pH |
 | **Larson-Skold** | `(Cl⁻ + SO₄²⁻) / alkalinity` (equivalents) | corrosivity toward mild steel: `< 0.8` low, `0.8–1.2` elevated, `> 1.2` high |
 | **Aggressiveness (AI)** | `pH + log₁₀(Ca · alkalinity)` | AWWA screen: `≥ 12` non-aggressive, `10–12` moderate, `< 10` aggressive |
+| **Stiff-Davis (S&DSI)** | `pH − pHs`, with `pHs = pCa + pAlk + K(μ, T)` | the LSI extended to high ionic strength (brines, seawater, concentrated blowdown) |
+
+The Stiff-Davis index replaces the LSI's temperature/TDS terms with an
+ionic-strength-dependent constant `K` (ASTM D4582 / USBR 2013 curve fit). Use it
+for high-salinity water (TDS ≳ 10,000 mg/L); for ordinary water the LSI is the
+right screen. Ionic strength is estimated as `μ ≈ 2.5×10⁻⁵ · TDS`.
 
 Interpretation thresholds are conventional screening bands; edges vary between
 sources (some Ryznar tables put the balanced/corrosive boundary at 6.8 rather
@@ -57,6 +63,7 @@ so apply a heat-rejection factor for field estimates.
 - Ryznar, J. W. (1944). *A New Index for Determining Amount of Calcium Carbonate Scale Formed by a Water.* J. AWWA 36(4).
 - Puckorius, P. R. & Brooke, J. M. (1991). *A New Practical Index for Calcium Carbonate Scale Prediction in Cooling Tower Systems.* Corrosion 47(4).
 - Larson, T. E. & Skold, R. V. (1958). *Laboratory Studies Relating Mineral Quality of Water to Corrosion of Steel and Cast Iron.* Corrosion 14(6).
+- Stiff, H. A. & Davis, L. E. (1952). *A Method for Predicting the Tendency of Oil Field Waters to Deposit Calcium Carbonate.* Petroleum Transactions AIME 195:213. (K constant: ASTM D4582; USBR, 2013.)
 
 !!! note
     These indices are screening guides, not a substitute for site-specific

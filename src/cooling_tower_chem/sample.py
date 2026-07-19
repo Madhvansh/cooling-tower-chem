@@ -95,6 +95,21 @@ class WaterSample:
             self.ph, self.calcium_hardness, self.total_alkalinity
         )
 
+    def stiff_davis_index(self) -> float:
+        """Stiff-Davis Stability Index, with ionic strength estimated from TDS.
+
+        For high-salinity water only (see
+        :func:`cooling_tower_chem.indices.stiff_davis_index`). Not included in
+        :meth:`report`, which targets ordinary cooling-tower water.
+        """
+        return indices.stiff_davis_index(
+            self.ph,
+            self.temperature_c,
+            self.calcium_hardness,
+            self.total_alkalinity,
+            tds=self.effective_tds(),
+        )
+
     def larson_skold_index(self) -> float | None:
         """Larson-Skold index, or ``None`` if chloride/sulfate were not provided."""
         if self.chloride is None or self.sulfate is None:

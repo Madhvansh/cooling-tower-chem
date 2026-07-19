@@ -7,6 +7,7 @@ from cooling_tower_chem import (
     interpret_lsi,
     interpret_psi,
     interpret_rsi,
+    interpret_stiff_davis,
 )
 
 
@@ -31,6 +32,13 @@ def test_psi_reuses_rsi_bands_but_relabels():
     tendency, text = interpret_psi(6.5)
     assert tendency is Tendency.BALANCED
     assert "PSI" in text and "RSI" not in text
+
+
+def test_stiff_davis_reuses_lsi_bands_but_relabels():
+    tendency, text = interpret_stiff_davis(1.0)
+    assert tendency is Tendency.SCALE_FORMING
+    assert "S&DSI" in text and "LSI" not in text
+    assert interpret_stiff_davis(-1.0)[0] is Tendency.CORROSIVE
 
 
 def test_larson_skold_bands():

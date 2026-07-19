@@ -29,6 +29,7 @@ from .balance import (
     cycles_of_concentration,
     drift_loss,
     evaporation_loss,
+    ionic_strength_from_tds,
     makeup_water,
     tds_from_conductivity,
     water_saved_by_increasing_cycles,
@@ -52,6 +53,8 @@ from .indices import (
     ph_of_saturation,
     puckorius_scaling_index,
     ryznar_stability_index,
+    stiff_davis_index,
+    stiff_davis_ph_of_saturation,
 )
 from .interpret import (
     Tendency,
@@ -60,6 +63,7 @@ from .interpret import (
     interpret_lsi,
     interpret_psi,
     interpret_rsi,
+    interpret_stiff_davis,
 )
 from .sample import WaterSample
 from .tower import CoolingTower
@@ -75,10 +79,13 @@ __all__ = [
     "puckorius_scaling_index",
     "larson_skold_index",
     "aggressiveness_index",
+    "stiff_davis_index",
+    "stiff_davis_ph_of_saturation",
     # balance
     "DEFAULT_TDS_FACTOR",
     "tds_from_conductivity",
     "conductivity_from_tds",
+    "ionic_strength_from_tds",
     "cycles_of_concentration",
     "evaporation_loss",
     "drift_loss",
@@ -93,6 +100,7 @@ __all__ = [
     "interpret_psi",
     "interpret_larson_skold",
     "interpret_aggressiveness",
+    "interpret_stiff_davis",
     # convenience
     "WaterSample",
     "CoolingTower",

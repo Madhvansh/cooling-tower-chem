@@ -22,6 +22,7 @@ __all__ = [
     "interpret_psi",
     "interpret_larson_skold",
     "interpret_aggressiveness",
+    "interpret_stiff_davis",
 ]
 
 
@@ -93,6 +94,12 @@ def interpret_psi(psi: float) -> tuple[Tendency, str]:
     """Interpret a Puckorius Scaling Index value (same bands as the RSI)."""
     tendency, text = interpret_rsi(psi)
     return tendency, text.replace("RSI", "PSI", 1)
+
+
+def interpret_stiff_davis(index: float) -> tuple[Tendency, str]:
+    """Interpret a Stiff-Davis Stability Index (same directional bands as the LSI)."""
+    tendency, text = interpret_lsi(index)
+    return tendency, text.replace("LSI", "S&DSI", 1)
 
 
 def interpret_larson_skold(index: float) -> tuple[Tendency, str]:
