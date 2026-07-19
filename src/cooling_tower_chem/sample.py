@@ -1,15 +1,16 @@
-"""A convenience :class:`WaterSample` that computes every index from one input.
+"""A convenience ``WaterSample`` that computes every index from one input.
 
-Example
--------
->>> from cooling_tower_chem import WaterSample
->>> s = WaterSample(ph=8.2, temperature_c=32, calcium_hardness=450,
-...                 total_alkalinity=250, conductivity_us_cm=2400,
-...                 chloride=180, sulfate=120)
->>> round(s.lsi(), 2)
-1.38
->>> s.report()["lsi"]["tendency"]
-'scale_forming'
+Example:
+
+```python
+from cooling_tower_chem import WaterSample
+
+s = WaterSample(ph=8.2, temperature_c=32, calcium_hardness=450,
+                total_alkalinity=250, conductivity_us_cm=2400,
+                chloride=180, sulfate=120)
+s.lsi()                        # 1.38
+s.report()["lsi"]["tendency"]  # 'scale_forming'
+```
 """
 
 from __future__ import annotations

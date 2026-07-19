@@ -53,6 +53,7 @@ ctchem = "cooling_tower_chem.cli:main"
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0", "ruff>=0.4", "build>=1.0"]
+docs = ["mkdocs-material>=9.5", "mkdocstrings[python]>=0.25"]
 
 [tool.hatch.version]
 path = "src/cooling_tower_chem/__init__.py"
