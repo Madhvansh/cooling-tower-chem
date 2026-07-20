@@ -50,6 +50,7 @@ dosing-control project, and hardened into a standalone package.
 - [:material-rocket-launch: **Quickstart**](quickstart.md)
 - [:material-calculator: **Water stability calculator**](calculator.md)
 - [:material-flask: **Indices & the science**](indices.md)
+- [:material-recycle: **Cycles of concentration**](cycles.md)
 - [:material-console: **Command line**](cli.md)
 - [:material-api: **API reference**](api.md)
 </div>

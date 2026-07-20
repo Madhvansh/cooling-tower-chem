@@ -62,6 +62,7 @@ nav:
   - Quickstart: quickstart.md
   - Calculator: calculator.md
   - Indices & the science: indices.md
+  - Cycles of concentration: cycles.md
   - CCPP: ccpp.md
   - Command line: cli.md
   - API reference: api.md

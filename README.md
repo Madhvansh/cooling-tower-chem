@@ -173,9 +173,27 @@ index method behaves exactly as if you had built it in SI units.
 
 ### Runnable examples
 
-See [`examples/`](examples/): `assess_water.py` prints a full report for one
-sample, and `optimize_cycles.py` sweeps cycles of concentration to show the
-water-use vs. scaling trade-off.
+See the [Examples](#examples) section below, or browse
+[`examples/`](examples/) directly.
+
+## Examples
+
+Runnable, dependency-free cookbook scripts in [`examples/`](examples/) — each
+prints a plain-text table (real output in the
+[examples README](examples/README.md)):
+
+| Script | What it screens |
+|---|---|
+| [`plant_water_screening.py`](examples/plant_water_screening.py) | batch LSI/RSI/PSI/CCPP + Larson-Skold risk table for a set of cooling-tower waters |
+| [`pool_spa_check.py`](examples/pool_spa_check.py) | the same indices at pool/spa chemistry, read with pool-practice LSI bands |
+| [`boiler_feedwater_check.py`](examples/boiler_feedwater_check.py) | residual-hardness screen across a boiler pre-treatment train |
+| [`assess_water.py`](examples/assess_water.py) | full index report for a single analysis |
+| [`optimize_cycles.py`](examples/optimize_cycles.py) | cycles-of-concentration sweep: makeup water vs. basin LSI |
+
+For the theory behind the cycles sweep, see the
+[Cycles of concentration](https://madhvansh.github.io/cooling-tower-chem/cycles/)
+doc — the COC mass balance and the water-savings vs. scaling-risk trade-off,
+worked through with the library.
 
 ## Units & conventions
 
