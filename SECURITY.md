@@ -33,7 +33,7 @@ When reporting, please include as much detail as you can:
 
 ## Response
 
-We aim to acknowledge new reports within a few days and will keep you informed
+We aim to acknowledge new reports within 14 days and will keep you informed
 as we investigate and prepare a fix. Once a fix is available, we will publish a
 new release and, where appropriate, a security advisory crediting the reporter
 (unless anonymity is requested).
