@@ -4,6 +4,7 @@
 [![Docs](https://img.shields.io/badge/docs-mkdocs--material-blue.svg)](https://madhvansh.github.io/cooling-tower-chem/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13776/badge)](https://www.bestpractices.dev/projects/13776)
 
 [![PyPI](https://img.shields.io/pypi/v/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
 [![Python versions](https://img.shields.io/pypi/pyversions/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
