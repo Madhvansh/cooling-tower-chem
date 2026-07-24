@@ -3,11 +3,11 @@
 ## Install
 
 ```bash
-# From source (until the first PyPI release lands):
-pip install git+https://github.com/Madhvansh/cooling-tower-chem
-
-# Once released on PyPI:
+# From PyPI:
 pip install cooling-tower-chem
+
+# Or install the latest development version from source:
+pip install git+https://github.com/Madhvansh/cooling-tower-chem
 ```
 
 No third-party dependencies. Pure standard-library Python, tested on CPython 3.9–3.13.

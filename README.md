@@ -5,11 +5,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 
-<!-- PyPI badges to add once the first release is published:
 [![PyPI](https://img.shields.io/pypi/v/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
-[![Python versions](https://img.shields.io/pypi/pyversions/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/) -->
-
-> **Status:** the first PyPI release is pending — for now, install from source (below).
+[![Python versions](https://img.shields.io/pypi/pyversions/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
 
 **The water-stability and corrosion math for cooling towers, as a small, dependency-free Python library.**
 
@@ -23,11 +20,11 @@ puts them in one tested, documented, importable place.
 > computes LSI, RSI, PSI, and CCPP live — no install required, and cross-checked against this library.
 
 ```bash
-# From source (until the first PyPI release lands):
-pip install git+https://github.com/Madhvansh/cooling-tower-chem
-
-# Once released on PyPI:
+# From PyPI:
 pip install cooling-tower-chem
+
+# Or install the latest development version from source:
+pip install git+https://github.com/Madhvansh/cooling-tower-chem
 ```
 
 No third-party dependencies. Pure standard-library Python, fully type-hinted, tested on CPython 3.9–3.13.
