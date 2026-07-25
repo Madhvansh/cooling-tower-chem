@@ -1,0 +1,56 @@
+{% set name = "cooling-tower-chem" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/cooling_tower_chem-{{ version }}.tar.gz
+  sha256: 125fcfb84976447098c3194097a8715cf7f2a202b80d683a1651ba7bf16b81b5
+
+build:
+  noarch: python
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  entry_points:
+    - ctchem = cooling_tower_chem.cli:main
+
+requirements:
+  host:
+    - python {{ python_min }}
+    - hatchling
+    - pip
+  run:
+    - python >={{ python_min }}
+
+test:
+  imports:
+    - cooling_tower_chem
+  commands:
+    - pip check
+    - ctchem --help
+  requires:
+    - python {{ python_min }}
+    - pip
+
+about:
+  home: https://github.com/Madhvansh/cooling-tower-chem
+  summary: Water-stability and corrosion indices (LSI, RSI, PSI, Larson-Skold) and water-balance math for cooling towers.
+  description: |
+    A dependency-free Python library for cooling-tower and process-water
+    chemistry. Implements the Langelier, Ryznar, Puckorius, Larson-Skold and
+    Stiff-Davis indices, the AWWA Aggressiveness Index, a thermodynamic Calcium
+    Carbonate Precipitation Potential, and cooling-tower water balance
+    (evaporation, drift, blowdown, makeup, cycles of concentration), plus the
+    unit conversions field data arrives in. Every formula is cited to its
+    primary source. Ships a CLI (ctchem) and a typed public API.
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  doc_url: https://madhvansh.github.io/cooling-tower-chem/
+  dev_url: https://github.com/Madhvansh/cooling-tower-chem
+
+extra:
+  recipe-maintainers:
+    - Madhvansh
