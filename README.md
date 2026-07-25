@@ -1,22 +1,34 @@
 # cooling-tower-chem
 
-[![CI](https://github.com/Madhvansh/cooling-tower-chem/actions/workflows/ci.yml/badge.svg)](https://github.com/Madhvansh/cooling-tower-chem/actions/workflows/ci.yml)
-[![Docs](https://img.shields.io/badge/docs-mkdocs--material-blue.svg)](https://madhvansh.github.io/cooling-tower-chem/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13776/badge)](https://www.bestpractices.dev/projects/13776)
-
-[![PyPI](https://img.shields.io/pypi/v/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
-[![Python versions](https://img.shields.io/pypi/pyversions/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21573289.svg)](https://doi.org/10.5281/zenodo.21573289)
-
-**The water-stability and corrosion math for cooling towers, as a small, dependency-free Python library.**
+**Tells you whether water will form scale or eat your pipes — the standard
+cooling-tower chemistry, as a dependency-free Python library.**
 
 Water-treatment engineers screen cooling-tower and process water with a handful
-of classical indices — Langelier, Ryznar, Puckorius, Larson-Skold — plus the
-evaporation / blowdown / makeup balance that sets cycles of concentration.
-Those formulas are scattered across textbooks and spreadsheets. `cooling-tower-chem`
-puts them in one tested, documented, importable place.
+of classical indices — Langelier, Ryznar, Puckorius, Larson-Skold, Stiff-Davis —
+plus the evaporation / blowdown / makeup balance that sets cycles of
+concentration. The equations are 60–90 years old and published. There is
+essentially no open-source implementation of them: in practice people use a
+vendor's closed calculator, a per-seat SaaS tool, or a spreadsheet passed
+between engineers with no citation and no tests.
+
+You can check that gap faster than reading this — search PyPI or GitHub for
+"Langelier saturation index."
+
+`cooling-tower-chem` puts these formulas in one tested, documented, importable
+place, with every one cited to the paper it came from.
+
+The repository is young because the *extraction* is recent. The code is older:
+it was factored out of [TGF](https://github.com/Madhvansh/TGF), an advisory
+water-treatment toolkit that depends on it and is in advisory use at eight
+cooling towers. Same author — that is provenance, not third-party adoption.
+
+[![CI](https://github.com/Madhvansh/cooling-tower-chem/actions/workflows/ci.yml/badge.svg)](https://github.com/Madhvansh/cooling-tower-chem/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
+[![Python versions](https://img.shields.io/pypi/pyversions/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Docs](https://img.shields.io/badge/docs-mkdocs--material-blue.svg)](https://madhvansh.github.io/cooling-tower-chem/)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13776/badge)](https://www.bestpractices.dev/projects/13776)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21573289.svg)](https://doi.org/10.5281/zenodo.21573289)
 
 > **Try it in your browser:** the [interactive water-stability calculator](https://madhvansh.github.io/cooling-tower-chem/calculator/)
 > computes LSI, RSI, PSI, and CCPP live — no install required, and cross-checked against this library.
