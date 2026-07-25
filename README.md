@@ -8,6 +8,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
 [![Python versions](https://img.shields.io/pypi/pyversions/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21573289.svg)](https://doi.org/10.5281/zenodo.21573289)
 
 **The water-stability and corrosion math for cooling towers, as a small, dependency-free Python library.**
 
