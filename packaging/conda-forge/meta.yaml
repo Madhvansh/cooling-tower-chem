@@ -18,11 +18,11 @@ build:
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python >=3.9
     - hatchling
     - pip
   run:
-    - python >={{ python_min }}
+    - python >=3.9
 
 test:
   imports:
@@ -31,7 +31,6 @@ test:
     - pip check
     - ctchem --help
   requires:
-    - python {{ python_min }}
     - pip
 
 about:
