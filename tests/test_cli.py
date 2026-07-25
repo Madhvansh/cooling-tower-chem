@@ -75,3 +75,22 @@ def test_conductivity_and_tds_mutually_exclusive():
             "lsi", "--ph", "7.5", "--temp", "25", "--tds", "400",
             "--conductivity", "600", "--calcium", "240", "--alkalinity", "180",
         ])
+
+
+def test_module_entry_point_runs_as_subprocess():
+    """`python -m cooling_tower_chem` must work without the scripts dir on PATH.
+
+    The ctchem console script depends on the install's script directory being
+    on PATH, which is not guaranteed -- notably inside conda test environments
+    on Windows. Running the module is the portable route and must keep working.
+    """
+    import subprocess
+    import sys
+
+    proc = subprocess.run(
+        [sys.executable, "-m", "cooling_tower_chem", "--version"],
+        capture_output=True,
+        text=True,
+    )
+    assert proc.returncode == 0, proc.stderr
+    assert proc.stdout.startswith("ctchem ")

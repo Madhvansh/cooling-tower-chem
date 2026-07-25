@@ -82,8 +82,11 @@ plain-language explanation). Two convenience classes, `WaterSample` and
 single call. The same calculations are reachable from the shell:
 
 ```
-ctchem report --ph 7.5 --temp-c 29.3 --calcium 269 --alkalinity 255 --tds 800
+ctchem report --ph 7.5 --temp 29.3 --calcium 269 --alkalinity 255 --tds 800
 ```
+
+The same entry point is reachable as `python -m cooling_tower_chem`, which does
+not depend on the install's script directory being on `PATH`.
 
 Inputs are validated — non-physical temperatures, non-positive concentrations
 and non-finite values raise rather than propagate silently into an index.

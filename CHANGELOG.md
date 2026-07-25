@@ -6,6 +6,16 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-07-26
+
+### Added
+- `python -m cooling_tower_chem` runs the CLI as a module. The `ctchem` console
+  script depends on the install's script directory being on `PATH`, which is not
+  guaranteed -- notably inside conda test environments on Windows, and in any
+  virtualenv the caller has not activated. Running the module works regardless.
+- A JOSS paper under `paper/`, and a conda-forge recipe under
+  `packaging/conda-forge/`.
+
 ### Added
 - `CoolingTower` object: evaporation/drift/blowdown/makeup balance and a
   `concentrated()` projection of makeup chemistry at N cycles.
