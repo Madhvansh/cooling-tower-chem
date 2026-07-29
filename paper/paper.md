@@ -47,11 +47,19 @@ govern that consumption — how many cycles of concentration to run, whether the
 circulating water is scaling or corrosive, how much inhibitor to dose — are made
 from a handful of well-established indices. Those indices are more than half a
 century old and are taught in every water-treatment course, yet the open-source
-Python ecosystem has almost no tooling for them. Practitioners generally reach
-for proprietary vendor calculators, spreadsheets passed between colleagues, or
-one of the many free web calculators that show a number without stating which
-formulation or temperature correlation produced it. None of these are citable,
-version-controlled, testable, or reviewable.
+implementations that exist are partial and aimed elsewhere. In R, `tidywater`
+[@tidywater] computes the Langelier, Ryznar, Larson–Skold and aggressiveness
+indices and CCPP — from the same calcite solubilities of @plummer1982 used here
+— for drinking-water treatment; in Python, `pypoolchem` [@pypoolchem] covers the
+saturation indices for pools and spas. Neither addresses cooling-tower
+operation: neither implements the Puckorius index, which is the formulation
+written for buffered recirculating water, nor the Stiff–Davis index for saline
+makeup, and neither carries the evaporation, blowdown and makeup balance that
+sets cycles of concentration. For that operating set, practitioners generally
+reach for proprietary vendor calculators, spreadsheets passed between
+colleagues, or one of the many free web calculators that show a number without
+stating which formulation or temperature correlation produced it. None of these
+are citable, version-controlled, testable, or reviewable.
 
 This matters because the indices are not interchangeable and are not uniformly
 defined. The Ryznar and Puckorius indices share a functional form but take
