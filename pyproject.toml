@@ -69,6 +69,7 @@ include = ["src", "tests", "README.md", "LICENSE", "CHANGELOG.md"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+pythonpath = ["src"]
 
 [tool.ruff]
 line-length = 100
