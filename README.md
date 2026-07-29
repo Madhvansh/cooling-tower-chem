@@ -6,12 +6,21 @@ cooling-tower chemistry, as a dependency-free Python library.**
 Water-treatment engineers screen cooling-tower and process water with a handful
 of classical indices — Langelier, Ryznar, Puckorius, Larson-Skold, Stiff-Davis —
 plus the evaporation / blowdown / makeup balance that sets cycles of
-concentration. The equations are 60–90 years old and published. There is
-essentially no open-source implementation of them: in practice people use a
-vendor's closed calculator, a per-seat SaaS tool, or a spreadsheet passed
-between engineers with no citation and no tests.
+concentration. The equations are 60–90 years old and published.
 
-You can check that gap faster than reading this — search PyPI or GitHub for
+Open-source neighbours exist at the edges:
+[tidywater](https://cran.r-project.org/package=tidywater) on CRAN implements
+Langelier, Ryznar, Larson-Skold, aggressiveness, and CCPP in R for
+drinking-water treatment (from the same Plummer & Busenberg solubilities used
+here), and [pypoolchem](https://pypi.org/project/pypoolchem/) on PyPI covers
+pool and spa LSI. What no installable Python package ships is the cooling-tower
+operating set — the full index family including Puckorius and Stiff-Davis, plus
+the evaporation / blowdown / makeup balance — dependency-free, each formula
+cited to its primary paper, tested. In practice plants still use a vendor's
+closed calculator, a per-seat SaaS tool, or a spreadsheet with no citation and
+no tests.
+
+You can check the Python half of that gap yourself: search PyPI for
 "Langelier saturation index."
 
 `cooling-tower-chem` puts these formulas in one tested, documented, importable
@@ -19,8 +28,10 @@ place, with every one cited to the paper it came from.
 
 The repository is young because the *extraction* is recent. The code is older:
 it was factored out of [TGF](https://github.com/Madhvansh/TGF), an advisory
-water-treatment toolkit that depends on it and is in advisory use at eight
-cooling towers. Same author — that is provenance, not third-party adoption.
+water-treatment toolkit in advisory use at eight cooling towers, which uses it
+as the single source of truth for the saturation-pH behind these indices when
+installed (with a vendored fallback, so TGF also installs standalone). Same
+author — that is provenance, not third-party adoption.
 
 [![CI](https://github.com/Madhvansh/cooling-tower-chem/actions/workflows/ci.yml/badge.svg)](https://github.com/Madhvansh/cooling-tower-chem/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/cooling-tower-chem.svg)](https://pypi.org/project/cooling-tower-chem/)
