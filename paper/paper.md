@@ -93,7 +93,7 @@ and non-finite values raise rather than propagate silently into an index.
 
 # Quality control
 
-The library is tested by 111 unit tests, including worked examples reproduced
+The library is tested by 112 unit tests, including worked examples reproduced
 from the source literature, and runs in continuous integration on CPython 3.9
 through 3.13. It is distributed on PyPI using Trusted Publishing with Sigstore
 build-provenance attestations, so a released artifact can be verified back to the
